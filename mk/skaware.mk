@@ -83,7 +83,7 @@ $(OUTPUT)/build-$(ARCH)/$$($(1)_NAME)-$$($(1)_VERSION)/$$($(1)_TOKEN): $(TOOLCHA
 	cd $(OUTPUT)/build-$(ARCH)/$$($(1)_NAME)-$$($(1)_VERSION) && env "PATH=$(TOOLCHAIN_PATH)/bin:$$(PATH)" $(MAKE) && env "PATH=$(TOOLCHAIN_PATH)/bin:$$(PATH)" $(MAKE) strip
 
 $(OUTPUT)/staging-$(ARCH)/package/$$($(1)_CATEGORY)/$$($(1)_NAME)/include/$$($(1)_NAME)/config.h: $(OUTPUT)/build-$(ARCH)/$$($(1)_NAME)-$$($(1)_VERSION)/$$($(1)_TOKEN)
-	cd $(OUTPUT)/build-$(ARCH)/$$($(1)_NAME)-$$($(1)_VERSION) && env "PATH=$(TOOLCHAIN_PATH)/bin:$$(PATH)" $(MAKE) -L install update global-links DESTDIR=$(OUTPUT)/staging-$(ARCH)
+	cd $(OUTPUT)/build-$(ARCH)/$$($(1)_NAME)-$$($(1)_VERSION) && env "PATH=$(TOOLCHAIN_PATH)/bin:$$(PATH)" $(MAKE) -j1 -L install update global-links DESTDIR=$(OUTPUT)/staging-$(ARCH)
 
 skaware-install: $(OUTPUT)/staging-$(ARCH)/package/$$($(1)_CATEGORY)/$$($(1)_NAME)/include/$$($(1)_NAME)/config.h
 
